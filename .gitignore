@@ -108,5 +108,8 @@ package-lock.json
 .vscode
 .vs
 
+# Vim/Neovim
+.vim
+
 # Android memory profiler files
 *.hprof
