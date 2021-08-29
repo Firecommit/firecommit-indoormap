@@ -107,6 +107,7 @@ package-lock.json
 # Visual studio
 .vscode
 .vs
+*.code-workspace
 
 # Vim/Neovim
 .vim
