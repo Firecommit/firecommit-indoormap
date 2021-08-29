@@ -1,6 +1,0 @@
-module Pods_firecommitIndoormap_firecommitIndoormapTests {
-  umbrella header "Pods-firecommitIndoormap-firecommitIndoormapTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
