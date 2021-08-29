@@ -1,0 +1,5 @@
+#import <Foundation/Foundation.h>
+@interface PodsDummy_Pods_firecommitIndoormap_firecommitIndoormapTests : NSObject
+@end
+@implementation PodsDummy_Pods_firecommitIndoormap_firecommitIndoormapTests
+@end
