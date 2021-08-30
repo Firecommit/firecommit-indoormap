@@ -20,6 +20,7 @@
   },
   "plugins": ["react", "@typescript-eslint", "prettier", "jest"],
   "rules": {
+    "import/no-unresolved": "off",
     "prettier/prettier": "error",
     "no-use-before-define": "off",
     "react/jsx-filename-extension": [
