@@ -9,22 +9,25 @@
  */
 
 import React from 'react';
-import { View, StatusBar } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { StatusBar } from 'react-native';
 import { MapScreen } from './src/map';
 
 export const App = () => {
+  const Stack = createNativeStackNavigator();
   return (
-    <View
-      style={{
-        position: 'absolute',
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0,
-      }}
-    >
-      <StatusBar barStyle="light-content" />
-      <MapScreen />
-    </View>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <StatusBar barStyle="light-content" />
+        <Stack.Navigator
+          initialRouteName="Map"
+          screenOptions={{ headerShown: false }}
+        >
+          <Stack.Screen name="Map" component={MapScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 };
