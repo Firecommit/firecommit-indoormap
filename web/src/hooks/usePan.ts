@@ -23,7 +23,7 @@ export const usePan = (): [
     const lastPoint = lastPointRef.current;
     const point = {
       x: event.pageX,
-      y: event.pageX,
+      y: event.pageY,
     };
     lastPointRef.current = point;
 
