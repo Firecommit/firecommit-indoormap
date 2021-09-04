@@ -67,9 +67,11 @@ export const useScale = (ref: RefObject<HTMLElement | null>) => {
 
       const p1: Point = { x: e.touches[0].pageX, y: e.touches[0].pageY };
       const p2: Point = { x: e.touches[1].pageX, y: e.touches[1].pageY };
+      const distance = getTwoPointDistance(p1, p2);
 
-      const deltaDistance = baseDistance - getTwoPointDistance(p1, p2);
-      sc = currentScale - deltaDistance * 0.0001;
+      const deltaDistance = baseDistance - distance;
+      setBaseDistance(distance);
+      sc = currentScale - deltaDistance * 0.005;
 
       sc = sc > MAX_SCALE ? MAX_SCALE : sc;
       sc = sc < MIN_SCALE ? MIN_SCALE : sc;
