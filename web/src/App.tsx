@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import { UsePanExample } from './components/usePanExample';
+import { UsePanScaleExample } from './components/usePanScaleExample';
 
 export const App = () => {
   return (
     <div className="App">
-      <UsePanExample />
+      <UsePanScaleExample />
     </div>
   );
 };
