@@ -9,11 +9,11 @@ import {
 type Point = { x: number; y: number };
 const ORIGIN = Object.freeze({ x: 0, y: 0 });
 
-export function usePan(): [
+export const usePan = (): [
   Point,
   (e: SyntheticMouseEvent) => void,
   (e: SyntheticTouchEvent) => void
-] {
+] => {
   const [panState, setPanState] = useState<Point>(ORIGIN);
 
   const lastPointRef = useRef(ORIGIN);
@@ -64,4 +64,4 @@ export function usePan(): [
   );
 
   return [panState, startMousePan, startTouchPan];
-}
+};
