@@ -1,13 +1,20 @@
 import React from 'react';
+import { Dimensions, View } from 'react-native';
 import { WebView } from 'react-native-webview';
 import { YOUR_IP_ADDRESS } from '@env';
 
 export const IndoorMapView = () => {
   return (
-    <WebView
-      style={{ flex: 1 }}
-      originWhitelist={['*']}
-      source={{ uri: `http://${YOUR_IP_ADDRESS}:3000` }}
-    />
+    <View
+      style={{
+        width: Dimensions.get('screen').width,
+        height: Dimensions.get('screen').height,
+      }}
+    >
+      <WebView
+        originWhitelist={['*']}
+        source={{ uri: `http://${YOUR_IP_ADDRESS}:3000` }}
+      />
+    </View>
   );
 };
