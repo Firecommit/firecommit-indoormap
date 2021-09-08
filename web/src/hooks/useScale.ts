@@ -1,14 +1,11 @@
 import { RefObject, useState } from 'react';
 import { useEventListener } from './useEventListener';
 
+import { Point } from '../types/Point';
+
 type ScaleOpts = {
   direction: 'up' | 'down';
   interval: number;
-};
-
-type Point = {
-  x: number;
-  y: number;
 };
 
 const MIN_SCALE = 0.5;
