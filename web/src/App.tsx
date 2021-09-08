@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import { UsePanScaleExample } from './components/usePanScaleExample';
+import { UsePinchPosExample } from './components/usePinchPosExample';
 
 export const App = () => {
   return (
     <div className="App">
-      <UsePanScaleExample />
+      <UsePinchPosExample />
     </div>
   );
 };
