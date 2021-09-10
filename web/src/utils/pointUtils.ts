@@ -8,7 +8,7 @@ export const getMidPoint = (p1: Point, p2: Point): Point => ({
   y: (p1.y + p2.y) / 2,
 });
 
-export const getScale = (p: Point, scale: number): Point => ({
+export const getPointDivision = (p: Point, scale: number): Point => ({
   x: p.x / scale,
   y: p.y / scale,
 });
