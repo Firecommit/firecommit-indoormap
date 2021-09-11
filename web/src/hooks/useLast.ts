@@ -1,7 +1,11 @@
-import rfdc from 'rfdc';
+import { useEffect, useRef } from 'react';
 
-export const useLast = (value: any) => {
-  const clone = rfdc();
+export const useLast = <T>(value: T): T => {
+  const ref = useRef<T>(value);
 
-  return clone(value);
+  useEffect(() => {
+    ref.current = value;
+  }, [value]);
+
+  return ref.current;
 };
