@@ -15,6 +15,13 @@ export const getTwoPointSum = (p1: Point, p2: Point): Point => {
   };
 };
 
+export const getTwoPointDiff = (p1: Point, p2: Point) => {
+  return {
+    x: p1.x - p2.x,
+    y: p1.y - p2.y,
+  };
+};
+
 export const getPointDivision = (p: Point, scale: number): Point => ({
   x: p.x / scale,
   y: p.y / scale,
