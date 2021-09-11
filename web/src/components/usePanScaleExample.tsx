@@ -2,8 +2,7 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Grid from '../resources/grid.svg';
 import { useScale } from '../hooks/useScale';
 import { usePan } from '../hooks/usePan';
-// import { usePinchPos } from '../hooks/usePinchPos';
-import { useMousePos } from '../hooks/useMousePos';
+import { usePinchOrMousePos } from '../hooks/usePinchOrMousePos';
 import { useLast } from '../hooks/useLast';
 import {
   getPointDivision,
@@ -15,8 +14,7 @@ import { Point } from '../types/Point';
 export const UsePanScaleExample = () => {
   const [buffer, setBuffer] = useState({ x: 0, y: 0 });
   const ref = useRef<HTMLDivElement | null>(null);
-  // const pinchPos = usePinchPos(ref);
-  const mousePos = useMousePos(ref);
+  const pinchOrMousePos = usePinchOrMousePos(ref);
   const [offset, startMousePan, startTouchPan] = usePan();
   const scale = useScale(ref);
 
@@ -38,11 +36,9 @@ export const UsePanScaleExample = () => {
       getPointDivision(offsetDelta, scale)
     );
   } else {
-    // const lastPinchPos = getPointDivision(pinchPos.current, lastScale);
-    // const newPinchPos = getPointDivision(pinchPos.current, scale);
-    const lastPinchPos = getPointDivision(mousePos.current, lastScale);
-    const newPinchPos = getPointDivision(mousePos.current, scale);
-    const pinchOffset = getTwoPointDiff(lastPinchPos, newPinchPos);
+    const lastPos = getPointDivision(pinchOrMousePos.current, lastScale);
+    const newPos = getPointDivision(pinchOrMousePos.current, scale);
+    const pinchOffset = getTwoPointDiff(lastPos, newPos);
 
     adjustedOffset = getTwoPointSum(adjustedOffsetRef.current, pinchOffset);
   }

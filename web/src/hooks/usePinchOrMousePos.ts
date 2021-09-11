@@ -3,7 +3,7 @@ import { Point } from '../types/Point';
 import { getMidPoint } from '../utils/pointUtils';
 import { useEventListener } from './useEventListener';
 
-export const usePinchPos = (ref: RefObject<HTMLElement | null>) => {
+export const usePinchOrMousePos = (ref: RefObject<HTMLElement | null>) => {
   const pos = useRef<Point>({ x: 0, y: 0 });
 
   const setMidPos = (e: TouchEvent) => {
@@ -18,6 +18,12 @@ export const usePinchPos = (ref: RefObject<HTMLElement | null>) => {
 
   useEventListener(ref, 'touchstart', setMidPos);
   useEventListener(ref, 'touchmove', setMidPos);
+  useEventListener(ref, 'wheel', (e: MouseEvent) => {
+    pos.current = {
+      x: e.pageX,
+      y: e.pageY,
+    };
+  });
 
   return pos;
 };
