@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
-import { usePinchOrMousePos } from '../../hooks/usePinchOrMousePos';
+import { useZoomPos } from '../../hooks/useZoomPos';
 import { usePan } from '../../hooks/usePan';
 import { useScale } from '../../hooks/useScale';
 import { useLast } from '../../hooks/useLast';
@@ -19,7 +19,7 @@ type Props = {
 export const Canvas = ({ image, position, maxOffset, minOffset }: Props) => {
   const [buffer, setBuffer] = useState({ x: 0, y: 0 });
   const ref = useRef<HTMLDivElement | null>(null);
-  const pinchOrMousePos = usePinchOrMousePos(ref);
+  const pinchOrMousePos = useZoomPos(ref);
   const [offset, startMousePan, startTouchPan] = usePan();
   const scale = useScale(ref);
   const [rerender, setRerender] = useState<boolean>(false);

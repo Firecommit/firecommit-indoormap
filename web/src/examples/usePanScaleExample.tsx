@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Grid from '../resources/grid.svg';
 import { useScale } from '../hooks/useScale';
 import { usePan } from '../hooks/usePan';
-import { usePinchOrMousePos } from '../hooks/usePinchOrMousePos';
+import { useZoomPos } from '../hooks/useZoomPos';
 import { useLast } from '../hooks/useLast';
 import { pointDivision, pointDiff, pointSum } from '../utils/pointUtils';
 import { Point } from '../types/Point';
@@ -10,7 +10,7 @@ import { Point } from '../types/Point';
 export const UsePanScaleExample = () => {
   const [buffer, setBuffer] = useState({ x: 0, y: 0 });
   const ref = useRef<HTMLDivElement | null>(null);
-  const pinchOrMousePos = usePinchOrMousePos(ref);
+  const pinchOrMousePos = useZoomPos(ref);
   const [offset, startMousePan, startTouchPan] = usePan();
   const scale = useScale(ref);
 

@@ -3,7 +3,7 @@ import { Point } from '../types/Point';
 import { midPoint } from '../utils/pointUtils';
 import { useEventListener } from './useEventListener';
 
-export const usePinchOrMousePos = (ref: RefObject<HTMLElement | null>) => {
+export const useZoomPos = (ref: RefObject<HTMLElement | null>) => {
   const pos = useRef<Point>({ x: 0, y: 0 });
 
   const setMidPos = (e: TouchEvent) => {
