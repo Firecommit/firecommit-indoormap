@@ -4,11 +4,7 @@ import { useScale } from '../hooks/useScale';
 import { usePan } from '../hooks/usePan';
 import { usePinchOrMousePos } from '../hooks/usePinchOrMousePos';
 import { useLast } from '../hooks/useLast';
-import {
-  getPointDivision,
-  getTwoPointDiff,
-  getTwoPointSum,
-} from '../utils/pointUtils';
+import { pointDivision, pointDiff, pointSum } from '../utils/pointUtils';
 import { Point } from '../types/Point';
 
 export const UsePanScaleExample = () => {
@@ -21,9 +17,9 @@ export const UsePanScaleExample = () => {
   const lastOffset = useLast<Point>(offset);
   const lastScale = useLast<number>(scale);
 
-  const offsetDelta = getTwoPointDiff(offset, lastOffset);
+  const offsetDelta = pointDiff(offset, lastOffset);
 
-  const initialAdjustedOffset = getTwoPointSum(offset, offsetDelta);
+  const initialAdjustedOffset = pointSum(offset, offsetDelta);
   const adjustedOffsetRef = useRef<Point>(initialAdjustedOffset);
   let adjustedOffset = adjustedOffsetRef.current;
   useEffect(() => {
@@ -31,16 +27,16 @@ export const UsePanScaleExample = () => {
   });
 
   if (lastScale === scale) {
-    adjustedOffset = getTwoPointSum(
+    adjustedOffset = pointSum(
       adjustedOffsetRef.current,
-      getPointDivision(offsetDelta, scale)
+      pointDivision(offsetDelta, scale)
     );
   } else {
-    const lastPos = getPointDivision(pinchOrMousePos.current, lastScale);
-    const newPos = getPointDivision(pinchOrMousePos.current, scale);
-    const pinchOffset = getTwoPointDiff(lastPos, newPos);
+    const lastPos = pointDivision(pinchOrMousePos.current, lastScale);
+    const newPos = pointDivision(pinchOrMousePos.current, scale);
+    const pinchOffset = pointDiff(lastPos, newPos);
 
-    adjustedOffset = getTwoPointSum(adjustedOffsetRef.current, pinchOffset);
+    adjustedOffset = pointSum(adjustedOffsetRef.current, pinchOffset);
   }
 
   useLayoutEffect(() => {

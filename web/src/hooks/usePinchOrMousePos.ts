@@ -1,6 +1,6 @@
 import { RefObject, useRef } from 'react';
 import { Point } from '../types/Point';
-import { getMidPoint } from '../utils/pointUtils';
+import { midPoint } from '../utils/pointUtils';
 import { useEventListener } from './useEventListener';
 
 export const usePinchOrMousePos = (ref: RefObject<HTMLElement | null>) => {
@@ -13,7 +13,7 @@ export const usePinchOrMousePos = (ref: RefObject<HTMLElement | null>) => {
 
     const p1 = { x: e.touches[0].pageX, y: e.touches[0].pageY };
     const p2 = { x: e.touches[1].pageX, y: e.touches[1].pageY };
-    pos.current = getMidPoint(p1, p2);
+    pos.current = midPoint(p1, p2);
   };
 
   useEventListener(ref, 'touchstart', setMidPos);

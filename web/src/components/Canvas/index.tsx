@@ -5,11 +5,7 @@ import { usePan } from '../../hooks/usePan';
 import { useScale } from '../../hooks/useScale';
 import { useLast } from '../../hooks/useLast';
 import { Point } from '../../types/Point';
-import {
-  getTwoPointDiff,
-  getPointDivision,
-  getTwoPointSum,
-} from '../../utils/pointUtils';
+import { pointDiff, pointDivision, pointSum } from '../../utils/pointUtils';
 
 import { CanvasPresenter } from './Presenter';
 
@@ -31,16 +27,14 @@ export const Canvas = ({ image, position, maxOffset, minOffset }: Props) => {
   const lastOffset = useLast<Point>(offset);
   const lastScale = useLast<number>(scale);
 
-  const offsetDelta = getTwoPointDiff(offset, lastOffset);
+  const offsetDelta = pointDiff(offset, lastOffset);
 
-  const initialAdjustedOffset = useRef<Point>(
-    getTwoPointSum(offset, offsetDelta)
-  );
+  const initialAdjustedOffset = useRef<Point>(pointSum(offset, offsetDelta));
   const adjustedOffsetRef = useRef<Point>(initialAdjustedOffset.current);
   let adjustedOffset = adjustedOffsetRef.current;
 
   useEffect(() => {
-    adjustedOffset = getTwoPointSum(initialAdjustedOffset.current, {
+    adjustedOffset = pointSum(initialAdjustedOffset.current, {
       x: position.x - (ref?.current?.clientWidth ?? 0) / 2,
       y: position.y - (ref?.current?.clientHeight ?? 0) / 2,
     });
@@ -48,20 +42,20 @@ export const Canvas = ({ image, position, maxOffset, minOffset }: Props) => {
   }, [position]);
 
   if (lastScale === scale) {
-    adjustedOffset = getTwoPointSum(
+    adjustedOffset = pointSum(
       adjustedOffsetRef.current,
-      getPointDivision(offsetDelta, scale)
+      pointDivision(offsetDelta, scale)
     );
     if (adjustedOffset.x > maxOffset.x) adjustedOffset.x = maxOffset.x;
     if (adjustedOffset.y > maxOffset.y) adjustedOffset.y = maxOffset.y;
     if (adjustedOffset.x < minOffset.x) adjustedOffset.x = minOffset.x;
     if (adjustedOffset.y < minOffset.y) adjustedOffset.y = minOffset.y;
   } else {
-    const lastPos = getPointDivision(pinchOrMousePos.current, lastScale);
-    const newPos = getPointDivision(pinchOrMousePos.current, scale);
-    const pinchOffset = getTwoPointDiff(lastPos, newPos);
+    const lastPos = pointDivision(pinchOrMousePos.current, lastScale);
+    const newPos = pointDivision(pinchOrMousePos.current, scale);
+    const pinchOffset = pointDiff(lastPos, newPos);
 
-    adjustedOffset = getTwoPointSum(adjustedOffsetRef.current, pinchOffset);
+    adjustedOffset = pointSum(adjustedOffsetRef.current, pinchOffset);
   }
 
   useEffect(() => {
