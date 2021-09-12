@@ -118,5 +118,5 @@ package-lock.json
 # Environmental Variables
 .env
 
-# Test Image
-web/src/resources/roomLayout.jpg
+# Test Images
+web/src/resources/private/

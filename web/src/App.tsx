@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Canvas } from './components/Canvas';
 
 import { Point } from './types/Point';
-import RoomLayout from './resources/roomLayout.jpg';
+import RoomLayout from './resources/private/roomLayout.jpg';
 
 export const App = () => {
   const [position, setPosition] = useState<Point>({ x: 500, y: 500 });
