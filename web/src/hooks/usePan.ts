@@ -5,8 +5,8 @@ import {
   useRef,
   useState,
 } from 'react';
+import { Point } from '../types/Point';
 
-type Point = { x: number; y: number };
 const ORIGIN = Object.freeze({ x: 0, y: 0 });
 
 export const usePan = (): [
