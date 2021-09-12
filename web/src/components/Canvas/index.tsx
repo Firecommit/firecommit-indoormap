@@ -34,6 +34,8 @@ export const Canvas = ({ image, position, maxOffset, minOffset }: Props) => {
   let adjustedOffset = adjustedOffsetRef.current;
 
   useEffect(() => {
+    // Update adjustedOffsetRef to adjustedOffset when each rerender
+    /* eslint-disable-next-line react-hooks/exhaustive-deps */
     adjustedOffset = pointSum(initialAdjustedOffset.current, {
       x: position.x - (ref?.current?.clientWidth ?? 0) / 2,
       y: position.y - (ref?.current?.clientHeight ?? 0) / 2,

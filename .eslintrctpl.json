@@ -18,7 +18,7 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint", "prettier", "jest"],
+  "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier", "jest"],
   "rules": {
     "import/no-unresolved": "off",
     "prettier/prettier": "error",
@@ -40,7 +40,9 @@
     "no-unused-vars": "off",
     "no-undef": "off",
     "consistent-return": "off",
-    "@typescript-eslint/no-unused-vars": ["error"]
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   },
   "settings": {
     "import/resolver": {
