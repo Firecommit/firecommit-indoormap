@@ -13,6 +13,7 @@ export const IndoorMapView = () => {
     >
       <WebView
         originWhitelist={['*']}
+        scrollEnabled={false}
         source={{ uri: `http://${YOUR_IP_ADDRESS}:3000` }}
       />
     </View>

@@ -117,3 +117,6 @@ package-lock.json
 
 # Environmental Variables
 .env
+
+# Test Images
+web/src/resources/private/
