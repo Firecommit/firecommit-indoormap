@@ -14,18 +14,13 @@ import {
 import { CanvasPresenter } from './Presenter';
 
 type Props = {
-  backgroundImage: string;
+  image: string;
   position: Point;
   maxOffset: Point;
   minOffset: Point;
 };
 
-export const Canvas = ({
-  backgroundImage,
-  position,
-  maxOffset,
-  minOffset,
-}: Props) => {
+export const Canvas = ({ image, position, maxOffset, minOffset }: Props) => {
   const [buffer, setBuffer] = useState({ x: 0, y: 0 });
   const ref = useRef<HTMLDivElement | null>(null);
   const pinchOrMousePos = usePinchOrMousePos(ref);
@@ -85,7 +80,7 @@ export const Canvas = ({
 
   return (
     <CanvasPresenter
-      backgroundImage={backgroundImage}
+      image={image}
       scale={scale}
       adjustedOffset={adjustedOffset}
       buffer={buffer}

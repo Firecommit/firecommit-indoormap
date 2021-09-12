@@ -3,7 +3,7 @@ import { Point } from '../../types/Point';
 import Grid from '../../resources/grid.svg';
 
 type Props = {
-  backgroundImage: string;
+  image: string;
   scale: number;
   adjustedOffset: Point;
   buffer: Point;
@@ -12,14 +12,7 @@ type Props = {
 };
 
 const CanvasInnerPresenter = (
-  {
-    backgroundImage,
-    scale,
-    adjustedOffset,
-    buffer,
-    startMousePan,
-    startTouchPan,
-  }: Props,
+  { image, scale, adjustedOffset, buffer, startMousePan, startTouchPan }: Props,
   ref: React.ForwardedRef<HTMLDivElement>
 ) => {
   const rootStyle: CSSProperties = {
@@ -29,7 +22,7 @@ const CanvasInnerPresenter = (
   };
   const canvasStyle: CSSProperties = {
     transform: `scale(${scale})`,
-    backgroundImage: `url(${backgroundImage})`,
+    backgroundImage: `url(${image})`,
     backgroundPosition: `${-adjustedOffset.x}px ${-adjustedOffset.y}px`,
     backgroundRepeat: 'no-repeat',
     position: 'absolute',

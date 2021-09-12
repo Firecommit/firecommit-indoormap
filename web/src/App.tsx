@@ -90,7 +90,7 @@ export const App = () => {
       </button>
       {showMap && (
         <Canvas
-          backgroundImage={RoomLayout}
+          image={RoomLayout}
           position={position}
           maxOffset={{ x: 1000, y: 700 }}
           minOffset={{ x: -1500, y: -700 }}
