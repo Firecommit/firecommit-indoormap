@@ -2,8 +2,25 @@ import React, { CSSProperties } from 'react';
 import { Point } from '../../types/Point';
 import Grid from '../../resources/grid.svg';
 
-type Props = {
+export type CanvasChild = {
+  child: React.ReactElement;
+  key: string;
+  height: number;
+  width: number;
+  rotate: number;
+  position: Point;
+  translate?: {
+    horizontal: 'center' | 'left' | 'right';
+    vertical: 'center' | 'top' | 'bottom';
+  };
+};
+
+export type OuterProps = {
   image: string;
+  canvasChildren?: Array<CanvasChild>;
+};
+
+type Props = OuterProps & {
   scale: number;
   adjustedOffset: Point;
   buffer: Point;
@@ -12,7 +29,15 @@ type Props = {
 };
 
 const CanvasInnerPresenter = (
-  { image, scale, adjustedOffset, buffer, startMousePan, startTouchPan }: Props,
+  {
+    image,
+    scale,
+    adjustedOffset,
+    buffer,
+    canvasChildren,
+    startMousePan,
+    startTouchPan,
+  }: Props,
   ref: React.ForwardedRef<HTMLDivElement>
 ) => {
   const rootStyle: CSSProperties = {
@@ -38,6 +63,35 @@ const CanvasInnerPresenter = (
     backgroundSize: 100,
     opacity: 0.2,
   };
+
+  const children: React.ReactNode = canvasChildren?.map(
+    ({ child, key, height, width, rotate, position, translate }) => {
+      let translateX = 0;
+      let translateY = 0;
+      if (!translate || translate.horizontal === 'center')
+        translateX = width / 2;
+      else if (translate.horizontal === 'left') translateX = 0;
+      else if (translate.horizontal === 'right') translateX = width;
+      if (!translate || translate.vertical === 'center')
+        translateY = height / 2;
+      else if (translate.vertical === 'top') translateY = 0;
+      else if (translate.vertical === 'bottom') translateY = height;
+      const additionalProps: { style: CSSProperties; key: string } = {
+        style: {
+          ...child.props.style,
+          height,
+          width,
+          position: 'absolute',
+          left: (position.x - adjustedOffset.x) * scale,
+          top: (position.y - adjustedOffset.y) * scale,
+          transform: `translate(-${translateX}px, -${translateY}px) rotate(${rotate}deg)`,
+        },
+        key,
+      };
+      return React.cloneElement(child, additionalProps);
+    }
+  ) || <></>;
+
   return (
     <div
       role="none"
@@ -48,6 +102,7 @@ const CanvasInnerPresenter = (
     >
       <div style={canvasStyle} />
       <div style={gridStyle} />
+      {children}
     </div>
   );
 };

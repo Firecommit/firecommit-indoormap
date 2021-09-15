@@ -7,16 +7,21 @@ import { useLast } from '../../hooks/useLast';
 import { Point } from '../../types/Point';
 import { pointDiff, pointDivision, pointSum } from '../../utils/pointUtils';
 
-import { CanvasPresenter } from './Presenter';
+import { CanvasPresenter, OuterProps } from './Presenter';
 
-type Props = {
-  image: string;
+export type Props = OuterProps & {
   position: Point;
   maxOffset: Point;
   minOffset: Point;
 };
 
-export const Canvas = ({ image, position, maxOffset, minOffset }: Props) => {
+export const Canvas = ({
+  image,
+  position,
+  maxOffset,
+  minOffset,
+  canvasChildren,
+}: Props) => {
   const [buffer, setBuffer] = useState({ x: 0, y: 0 });
   const ref = useRef<HTMLDivElement | null>(null);
   const pinchOrMousePos = useZoomPos(ref);
@@ -80,6 +85,7 @@ export const Canvas = ({ image, position, maxOffset, minOffset }: Props) => {
       scale={scale}
       adjustedOffset={adjustedOffset}
       buffer={buffer}
+      canvasChildren={canvasChildren}
       startMousePan={startMousePan}
       startTouchPan={startTouchPan}
       ref={ref}
