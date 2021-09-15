@@ -9,7 +9,7 @@ export type CanvasChild = {
   width: number;
   rotate: number;
   position: Point;
-  translate?: {
+  anchor?: {
     horizontal: 'center' | 'left' | 'right';
     vertical: 'center' | 'top' | 'bottom';
   };
@@ -65,17 +65,15 @@ const CanvasInnerPresenter = (
   };
 
   const children: React.ReactNode = canvasChildren?.map(
-    ({ child, key, height, width, rotate, position, translate }) => {
+    ({ child, key, height, width, rotate, position, anchor }) => {
       let translateX = 0;
       let translateY = 0;
-      if (!translate || translate.horizontal === 'center')
-        translateX = width / 2;
-      else if (translate.horizontal === 'left') translateX = 0;
-      else if (translate.horizontal === 'right') translateX = width;
-      if (!translate || translate.vertical === 'center')
-        translateY = height / 2;
-      else if (translate.vertical === 'top') translateY = 0;
-      else if (translate.vertical === 'bottom') translateY = height;
+      if (!anchor || anchor.horizontal === 'center') translateX = width / 2;
+      else if (anchor.horizontal === 'left') translateX = 0;
+      else if (anchor.horizontal === 'right') translateX = width;
+      if (!anchor || anchor.vertical === 'center') translateY = height / 2;
+      else if (anchor.vertical === 'top') translateY = 0;
+      else if (anchor.vertical === 'bottom') translateY = height;
       const additionalProps: { style: CSSProperties; key: string } = {
         style: {
           ...child.props.style,

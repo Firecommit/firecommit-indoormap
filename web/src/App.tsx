@@ -73,7 +73,7 @@ export const App = () => {
       width: 100,
       rotate: 0,
       position: { x: 680, y: 200 },
-      translate: {
+      anchor: {
         horizontal: 'right',
         vertical: 'bottom',
       },
