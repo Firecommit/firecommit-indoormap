@@ -152,7 +152,7 @@ export const App = () => {
         </button>
       </div>
       <Canvas
-        image={RoomLayout}
+        canvasImage={RoomLayout}
         position={mapPosition}
         maxOffset={{ x: 1000, y: 700 }}
         minOffset={{ x: -1500, y: -700 }}

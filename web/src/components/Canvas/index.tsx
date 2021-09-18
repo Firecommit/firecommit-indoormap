@@ -16,7 +16,7 @@ export type Props = OuterProps & {
 };
 
 export const Canvas = ({
-  image,
+  canvasImage,
   position,
   maxOffset,
   minOffset,
@@ -81,7 +81,7 @@ export const Canvas = ({
 
   return (
     <CanvasPresenter
-      image={image}
+      canvasImage={canvasImage}
       scale={scale}
       adjustedOffset={adjustedOffset}
       buffer={buffer}

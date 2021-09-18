@@ -16,7 +16,7 @@ export type CanvasChild = {
 };
 
 export type OuterProps = {
-  image: string;
+  canvasImage: string;
   canvasChildren?: Array<CanvasChild>;
 };
 
@@ -30,7 +30,7 @@ type Props = OuterProps & {
 
 const CanvasInnerPresenter = (
   {
-    image,
+    canvasImage,
     scale,
     adjustedOffset,
     buffer,
@@ -47,7 +47,7 @@ const CanvasInnerPresenter = (
   };
   const canvasStyle: CSSProperties = {
     transform: `scale(${scale})`,
-    backgroundImage: `url(${image})`,
+    backgroundImage: `url(${canvasImage})`,
     backgroundPosition: `${-adjustedOffset.x}px ${-adjustedOffset.y}px`,
     backgroundRepeat: 'no-repeat',
     position: 'absolute',
