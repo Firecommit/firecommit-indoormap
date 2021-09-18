@@ -120,3 +120,4 @@ package-lock.json
 
 # Test Images
 web/src/resources/private/
+native/src/resources/private/
